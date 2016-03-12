@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadioCART", "RadioCART\RadioCART.csproj", "{4568B40F-C7D7-45B8-AD23-077F2BD32421}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{6B9D53CE-FD7D-405F-9954-3C3785BFDFAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4568B40F-C7D7-45B8-AD23-077F2BD32421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4568B40F-C7D7-45B8-AD23-077F2BD32421}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4568B40F-C7D7-45B8-AD23-077F2BD32421}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4568B40F-C7D7-45B8-AD23-077F2BD32421}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B9D53CE-FD7D-405F-9954-3C3785BFDFAB}.Debug|Any CPU.ActiveCfg = Debug
+		{6B9D53CE-FD7D-405F-9954-3C3785BFDFAB}.Release|Any CPU.ActiveCfg = Release
+		{6B9D53CE-FD7D-405F-9954-3C3785BFDFAB}.Release|Any CPU.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
