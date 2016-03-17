@@ -35,17 +35,25 @@ namespace RadioCART
             return player;
         }
 
-        public void setUpLine(Form1 f, Int32 i){
+        public void SetUpLine(Form1 f, Int32 i){
             theForm = f;
             id = i;
-            setEjectLabel(i);
+            SetEjectLabel(i);
         }
 
         private void playButton_Click(object sender, EventArgs e)
         {
             if (playable == true && player.IsLoadCompleted)
             {
-                player.Play();
+                if (checkBox1.CheckState == CheckState.Checked)
+                {
+                    theForm.PlayQueue(id);
+                }
+                else
+                {
+                    player.Play();
+                }
+                
             }
         }
 
@@ -80,7 +88,7 @@ namespace RadioCART
             }
         }
 
-        public void setEjectLabel(int n)
+        public void SetEjectLabel(int n)
         {
             ejectButton.Text = n.ToString();
         }
@@ -100,11 +108,11 @@ namespace RadioCART
         {
             if (checkBox1.CheckState == CheckState.Checked)
             {
-                theForm.getQueue()[id] = player.SoundLocation;
+                theForm.Queue[id] = player.SoundLocation;
             }
             else if (checkBox1.CheckState == CheckState.Unchecked)
             {
-                theForm.getQueue()[id] = null;
+                theForm.Queue[id] = null;
             }
         }
     }

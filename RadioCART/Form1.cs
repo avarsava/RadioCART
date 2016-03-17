@@ -27,63 +27,90 @@ namespace RadioCART
             }
         }
 
-        string[] queue;
+        private string[] mQueue;
+
+        public string[] Queue
+        {
+            get
+            {
+                return mQueue;
+            }
+            set
+            {
+                mQueue = value;
+            }
+        }
+
+        private SoundPlayer player;
+
 
         public Form1()
         {
             InitializeComponent();
             mPlaylist = new List<String>();
-            queue = new string[5]; //strings are nullable btw 
+            mQueue = new string[5]; //strings are nullable btw 
+            player = new SoundPlayer();
             addControls();
         }
 
-        public string[] getQueue()
-        {
-            return queue;
-        }
-
-        public void playQueue(int i)
+        public void PlayQueue(int i)
         {
             int startingid = i;
+
+            while (true)
+            {
+                if (mQueue[i] != null)
+                {
+                    player.SoundLocation = mQueue[i];
+                    player.Play();
+                }
+                
+                i++;
+                if (i == mQueue.Length)
+                {
+                    i = 0;
+                }
+                if (i == startingid)
+                {
+                    break;
+                }
+            }
+            
+
         }
 
         private void addControls()
         {
-            line1.setUpLine(this, 1);
-            line2.setUpLine(this, 2);
-            line3.setUpLine(this, 3);
-            line4.setUpLine(this, 4);
-            line5.setUpLine(this, 5);
+            line1.SetUpLine(this, 1);
+            line2.SetUpLine(this, 2);
+            line3.SetUpLine(this, 3);
+            line4.SetUpLine(this, 4);
+            line5.SetUpLine(this, 5);
         }
 
         private void line1_Load(object sender, EventArgs e)
         {
-            line1.setEjectLabel(1);
+            line1.SetEjectLabel(1);
         }
 
         private void line2_Load(object sender, EventArgs e)
         {
-            line2.setEjectLabel(2);
+            line2.SetEjectLabel(2);
         }
 
         private void line3_Load(object sender, EventArgs e)
         {
-            line3.setEjectLabel(3);
+            line3.SetEjectLabel(3);
         }
 
         private void line4_Load(object sender, EventArgs e)
         {
-            line4.setEjectLabel(4);
+            line4.SetEjectLabel(4);
         }
 
         private void line5_Load(object sender, EventArgs e)
         {
-            line5.setEjectLabel(5);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
+            line5.SetEjectLabel(5);
         }
     }
 }
