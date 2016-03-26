@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -62,7 +63,7 @@ namespace RadioCART
                 if (mQueue[i] != null)
                 {
                     player.SoundLocation = mQueue[i];
-                    player.Play();
+                    player.PlaySync();
                 }
                 
                 i++;

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Threading;
 
 namespace RadioCART
 {
@@ -19,6 +20,8 @@ namespace RadioCART
         SoundPlayer player;
 
         Boolean playable;
+
+        Thread playerThread;
 
         int id;
 
@@ -47,7 +50,8 @@ namespace RadioCART
             {
                 if (checkBox1.CheckState == CheckState.Checked)
                 {
-                    theForm.PlayQueue(id);
+                    playerThread = new Thread(new ThreadStart(threadPlayer));
+                    playerThread.Start();
                 }
                 else
                 {
@@ -57,8 +61,21 @@ namespace RadioCART
             }
         }
 
+        public void threadPlayer()
+        {
+            try
+            {
+                theForm.PlayQueue(id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Alas, the thread exploded");
+            }
+        }
+
         private void stopButton_Click(object sender, EventArgs e)
         {
+
             player.Stop();
         }
 
