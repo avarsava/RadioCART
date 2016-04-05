@@ -11,8 +11,12 @@ using System.Windows.Forms;
 using System.Media;
 using System.Threading;
 
+//TODO: Display file length and show remaining time numerically & visually
+
 namespace RadioCART
 {
+
+
     public partial class Line : UserControl
     {
         Form1 theForm;
@@ -20,8 +24,6 @@ namespace RadioCART
         SoundPlayer player;
 
         Boolean playable;
-
-        Thread playerThread;
 
         int id;
 
@@ -42,16 +44,16 @@ namespace RadioCART
             theForm = f;
             id = i;
             SetEjectLabel(i);
+            
         }
 
         private void playButton_Click(object sender, EventArgs e)
         {
             if (playable == true && player.IsLoadCompleted)
             {
-                if (checkBox1.CheckState == CheckState.Checked)
+                if (checkBox1.CheckState == CheckState.Checked && !theForm.QueuePlayer.StillPlaying())
                 {
-                    playerThread = new Thread(new ThreadStart(threadPlayer));
-                    playerThread.Start();
+                    theForm.QueuePlayer.StartPlaying(theForm.ReorderQueue(id));
                 }
                 else
                 {
@@ -61,22 +63,22 @@ namespace RadioCART
             }
         }
 
-        public void threadPlayer()
-        {
-            try
-            {
-                theForm.PlayQueue(id);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Alas, the thread exploded");
-            }
-        }
+        
 
         private void stopButton_Click(object sender, EventArgs e)
         {
+            if (playable == true && player.IsLoadCompleted)
+            {
+                if (checkBox1.CheckState == CheckState.Checked && theForm.QueuePlayer.StillPlaying())
+                {
+                    theForm.QueuePlayer.StopPlaying();
+                }
+                else
+                {
+                    player.Stop();
+                }
 
-            player.Stop();
+            }
         }
 
         private void ejectButton_Click(object sender, EventArgs e)

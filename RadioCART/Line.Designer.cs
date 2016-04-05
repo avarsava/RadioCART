@@ -35,6 +35,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.clearButton = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.TotalTimeLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // fileName
@@ -103,10 +104,19 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // TotalTimeLabel
+            // 
+            this.TotalTimeLabel.AutoSize = true;
+            this.TotalTimeLabel.Location = new System.Drawing.Point(4, 16);
+            this.TotalTimeLabel.Name = "TotalTimeLabel";
+            this.TotalTimeLabel.Size = new System.Drawing.Size(0, 13);
+            this.TotalTimeLabel.TabIndex = 6;
+            // 
             // Line
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.TotalTimeLabel);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.ejectButton);
@@ -129,5 +139,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label TotalTimeLabel;
     }
 }

@@ -10,10 +10,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//TODO: add song to queue if you switch it out while its checked
+
 namespace RadioCART
 {
     public partial class Form1 : Form
     {
+        public QueuePlayer QueuePlayer { get; private set; }
         private List<String> mPlaylist;
 
         public List<String> Playlist
@@ -52,6 +55,33 @@ namespace RadioCART
             mQueue = new string[5]; //strings are nullable btw 
             player = new SoundPlayer();
             addControls();
+            QueuePlayer = new QueuePlayer();
+        }
+
+        public List<String> ReorderQueue(int start)
+        {
+            List<String> ret = new List<String>();
+            int i = start;
+
+            while (true)
+            {
+                if (mQueue[i] != null)
+                {
+                    ret.Add(mQueue[i]);
+                }
+
+                i++;
+                if (i == mQueue.Length)
+                {
+                    i = 0;
+                }
+                if (i == start)
+                {
+                    break;
+                }
+            }
+
+            return ret;
         }
 
         public void PlayQueue(int i)
