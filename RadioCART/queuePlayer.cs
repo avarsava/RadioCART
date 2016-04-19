@@ -5,17 +5,17 @@ using System.Media;
 using System.Text;
 using System.Threading;
 using System.Diagnostics;
+using System.Windows.Media;
 
 namespace RadioCART
 {
     public class QueuePlayer
     {
-        private SoundPlayer mCurrentSong;
-        private Thread mTh;
+        private MediaPlayer mCurrentSong;
 
         private bool mPlaying;
 
-        public List<String> Songs
+        public Queue<String> Songs
         {
             get;
             private set;
@@ -24,7 +24,18 @@ namespace RadioCART
         public QueuePlayer()
         {
             mPlaying = false;
-            mCurrentSong = null;
+            mCurrentSong = new MediaPlayer();
+        }
+
+        private void DelegateMethod(Object obj, EventArgs ea)
+        {
+            mCurrentSong.MediaEnded += DelegateMethod;
+            if (Songs.Count != 0)
+            {
+                mCurrentSong.Open(new Uri(Songs.Dequeue()));
+                mCurrentSong.Play();
+            }
+
         }
 
         public bool StillPlaying()
@@ -32,33 +43,31 @@ namespace RadioCART
             return mPlaying;
         }
 
-        public void StartPlaying(List<String> q)
+        public void StartPlaying(Queue<String> q)
         {
             mPlaying = true;
-            mTh = new Thread(PlayQueue);
             Songs = q;
-            mTh.Start();
+            PlayQueue();
         }
 
         public void StopPlaying()
         {
-            if (mTh != null && mPlaying == true)
+            if (mPlaying == true)
             {
+                mCurrentSong.Stop();
                 mPlaying = false;
-                mTh.Abort();
-                mTh = null;
             }
         }
 
         private void PlayQueue()
         {
-            foreach (String s in Songs)
+            mCurrentSong.MediaEnded += DelegateMethod;
+            if (Songs.Count != 0)
             {
-                mCurrentSong = new SoundPlayer(s);
-                mCurrentSong.PlaySync();
+                mCurrentSong.Open(new Uri(Songs.Dequeue()));
+                mCurrentSong.Play();
             }
             mPlaying = false;
-            mTh = null;
         }
     }
 }

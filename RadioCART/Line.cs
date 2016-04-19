@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using System.Threading;
+using System.Windows.Media;
+using System.Windows.Threading;
 
 //TODO: Display file length and show remaining time numerically & visually
 
@@ -21,23 +23,46 @@ namespace RadioCART
     {
         Form1 theForm;
 
-        SoundPlayer player;
+        private MediaPlayer mPlayer;
+
+        public MediaPlayer Player
+        {
+            get
+            {
+                return mPlayer;
+            }
+        }
 
         Boolean playable;
 
         int id;
 
+        private String mSong;
+
+        private DispatcherTimer mDt;
 
         public Line()
         {
             InitializeComponent();
-            player = new SoundPlayer();
+            mPlayer = new MediaPlayer();
+            mPlayer.MediaOpened += songLoaded;
+            mDt = new DispatcherTimer();
+            mDt.Interval = TimeSpan.FromMilliseconds(10);
+            mDt.Tick += mDt_Tick;
+            mDt.Start();
             playable = false;
         }
 
-        public SoundPlayer getPlayer()
+        void mDt_Tick(object sender, EventArgs e)
         {
-            return player;
+            progressBar1.Value = (int)mPlayer.Position.TotalMilliseconds;
+           
+            //This improves the sync, somehow
+            if (progressBar1.Value != 0)
+            {
+                progressBar1.Value--;
+                progressBar1.Value++;
+            }
         }
 
         public void SetUpLine(Form1 f, Int32 i){
@@ -47,9 +72,10 @@ namespace RadioCART
             
         }
 
+        //this allows restarting still :(
         private void playButton_Click(object sender, EventArgs e)
         {
-            if (playable == true && player.IsLoadCompleted)
+            if (playable == true)
             {
                 if (checkBox1.CheckState == CheckState.Checked && !theForm.QueuePlayer.StillPlaying())
                 {
@@ -57,7 +83,8 @@ namespace RadioCART
                 }
                 else
                 {
-                    player.Play();
+                    mPlayer.Open(new Uri(mSong));
+                    mPlayer.Play();
                 }
                 
             }
@@ -67,7 +94,7 @@ namespace RadioCART
 
         private void stopButton_Click(object sender, EventArgs e)
         {
-            if (playable == true && player.IsLoadCompleted)
+            if (playable == true)
             {
                 if (checkBox1.CheckState == CheckState.Checked && theForm.QueuePlayer.StillPlaying())
                 {
@@ -75,14 +102,30 @@ namespace RadioCART
                 }
                 else
                 {
-                    player.Stop();
+                    mPlayer.Stop();
                 }
 
             }
         }
 
+        private void songLoaded(Object o, EventArgs ea)
+        {
+            double time = 0.0;
+            theForm.Playlist.Add(mSong);
+            if (mPlayer.NaturalDuration.HasTimeSpan)
+            {
+                time = mPlayer.NaturalDuration.TimeSpan.TotalSeconds;
+            }
+            TotalTimeLabel.Text = Math.Round(time, 3).ToString();
+            playable = true;
+
+            progressBar1.Minimum = 0;
+            progressBar1.Maximum = (int)mPlayer.NaturalDuration.TimeSpan.TotalMilliseconds;
+        }
+
         private void ejectButton_Click(object sender, EventArgs e)
         {
+            progressBar1.DataBindings.Clear();
             OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == DialogResult.OK)
             {
@@ -96,11 +139,9 @@ namespace RadioCART
                     }
 
                     //Make this the new file
-                    fileName.Text = Path.GetFileName(ofd.FileName);
-                    player.SoundLocation = ofd.FileName;
-                    player.Load();
-                    theForm.Playlist.Add(player.SoundLocation);
-                    playable = true;
+                    mSong = ofd.FileName;
+                    fileName.Text = Path.GetFileName(mSong);
+                    mPlayer.Open(new Uri(mSong));
                 }
                 
                 
@@ -114,12 +155,14 @@ namespace RadioCART
 
         private void clearButton_Click(object sender, EventArgs e)
         {
-            if (theForm.Playlist.IndexOf(player.SoundLocation) >= 0)
+            if (theForm.Playlist.IndexOf(mSong) >= 0)
             {
-                theForm.Playlist.RemoveAt(theForm.Playlist.IndexOf(player.SoundLocation));
+                theForm.Playlist.RemoveAt(theForm.Playlist.IndexOf(mSong));
             }
             
             fileName.Text = "Please load a file.";
+            TotalTimeLabel.Text = null;
+            ElapsedTimeLabel.Text = null;
             playable = false;
         }
 
@@ -127,7 +170,7 @@ namespace RadioCART
         {
             if (checkBox1.CheckState == CheckState.Checked)
             {
-                theForm.Queue[id] = player.SoundLocation;
+                theForm.Queue[id] = mSong;
             }
             else if (checkBox1.CheckState == CheckState.Unchecked)
             {
