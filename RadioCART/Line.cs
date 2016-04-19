@@ -57,8 +57,8 @@ namespace RadioCART
         {
             if (mPlayer.NaturalDuration.HasTimeSpan)
             {
-                ElapsedTimeLabel.Text = (Math.Max(mPlayer.NaturalDuration.TimeSpan.TotalSeconds
-                    - mPlayer.Position.TotalSeconds, 0)).ToString();
+                ElapsedTimeLabel.Text = Math.Round((Math.Max(mPlayer.NaturalDuration.TimeSpan.TotalSeconds
+                    - mPlayer.Position.TotalSeconds, 0)), 1).ToString();
             }
 
             progressBar1.Value = Math.Min((int)mPlayer.Position.TotalMilliseconds, progressBar1.Maximum);
@@ -111,7 +111,7 @@ namespace RadioCART
                 }
                 if (mPlayer.NaturalDuration.HasTimeSpan)
                 {
-                    ElapsedTimeLabel.Text = mPlayer.NaturalDuration.TimeSpan.TotalSeconds.ToString();
+                    ElapsedTimeLabel.Text = Math.Round(mPlayer.NaturalDuration.TimeSpan.TotalSeconds, 1).ToString();
                 }
             }
         }
