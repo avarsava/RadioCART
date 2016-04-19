@@ -142,6 +142,9 @@ namespace RadioCART
                     mSong = ofd.FileName;
                     fileName.Text = Path.GetFileName(mSong);
                     mPlayer.Open(new Uri(mSong));
+
+                    //Uncheck the checkbox
+                    checkBox1.Checked = false;
                 }
                 
                 
