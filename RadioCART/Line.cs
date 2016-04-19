@@ -57,8 +57,8 @@ namespace RadioCART
         {
             if (mPlayer.NaturalDuration.HasTimeSpan)
             {
-                ElapsedTimeLabel.Text = (mPlayer.NaturalDuration.TimeSpan.TotalSeconds
-                    - mPlayer.Position.TotalSeconds).ToString();
+                ElapsedTimeLabel.Text = (Math.Max(mPlayer.NaturalDuration.TimeSpan.TotalSeconds
+                    - mPlayer.Position.TotalSeconds, 0)).ToString();
             }
 
             progressBar1.Value = Math.Min((int)mPlayer.Position.TotalMilliseconds, progressBar1.Maximum);
