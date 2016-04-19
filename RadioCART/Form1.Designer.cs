@@ -34,12 +34,49 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.stepDown = new System.Windows.Forms.RadioButton();
+            this.stepUp = new System.Windows.Forms.RadioButton();
             this.line5 = new RadioCART.Line();
             this.line4 = new RadioCART.Line();
             this.line3 = new RadioCART.Line();
             this.line2 = new RadioCART.Line();
             this.line1 = new RadioCART.Line();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.stepUp);
+            this.groupBox1.Controls.Add(this.stepDown);
+            this.groupBox1.Location = new System.Drawing.Point(517, 23);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(151, 73);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Step";
+            // 
+            // stepDown
+            // 
+            this.stepDown.AutoSize = true;
+            this.stepDown.Checked = true;
+            this.stepDown.Location = new System.Drawing.Point(7, 20);
+            this.stepDown.Name = "stepDown";
+            this.stepDown.Size = new System.Drawing.Size(78, 17);
+            this.stepDown.TabIndex = 0;
+            this.stepDown.TabStop = true;
+            this.stepDown.Text = "Step Down";
+            this.stepDown.UseVisualStyleBackColor = true;
+            // 
+            // stepUp
+            // 
+            this.stepUp.AutoSize = true;
+            this.stepUp.Location = new System.Drawing.Point(7, 45);
+            this.stepUp.Name = "stepUp";
+            this.stepUp.Size = new System.Drawing.Size(64, 17);
+            this.stepUp.TabIndex = 1;
+            this.stepUp.Text = "Step Up";
+            this.stepUp.UseVisualStyleBackColor = true;
             // 
             // line5
             // 
@@ -81,19 +118,26 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(686, 297);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.line5);
             this.Controls.Add(this.line4);
             this.Controls.Add(this.line3);
             this.Controls.Add(this.line2);
             this.Controls.Add(this.line1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Form1";
             this.Text = "RadioCART 0.0.1";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.RadioButton stepUp;
+        public System.Windows.Forms.RadioButton stepDown;
 
 
 

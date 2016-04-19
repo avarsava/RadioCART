@@ -57,8 +57,15 @@ namespace RadioCART
         {
             if (mPlayer.NaturalDuration.HasTimeSpan)
             {
-                ElapsedTimeLabel.Text = Math.Round((Math.Max(mPlayer.NaturalDuration.TimeSpan.TotalSeconds
-                    - mPlayer.Position.TotalSeconds, 0)), 1).ToString();
+                if (theForm.stepDown.Checked)
+                {
+                    ElapsedTimeLabel.Text = Math.Round((Math.Max(mPlayer.NaturalDuration.TimeSpan.TotalSeconds
+                       - mPlayer.Position.TotalSeconds, 0)), 1).ToString();
+                }
+                else
+                {
+                    ElapsedTimeLabel.Text = Math.Round(mPlayer.Position.TotalSeconds, 1).ToString();
+                }
             }
 
             progressBar1.Value = Math.Min((int)mPlayer.Position.TotalMilliseconds, progressBar1.Maximum);
