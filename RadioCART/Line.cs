@@ -109,7 +109,10 @@ namespace RadioCART
                 {
                     mPlayer.Stop();
                 }
-
+                if (mPlayer.NaturalDuration.HasTimeSpan)
+                {
+                    ElapsedTimeLabel.Text = mPlayer.NaturalDuration.TimeSpan.TotalSeconds.ToString();
+                }
             }
         }
 
