@@ -55,13 +55,18 @@ namespace RadioCART
 
         void mDt_Tick(object sender, EventArgs e)
         {
-            progressBar1.Value = (int)mPlayer.Position.TotalMilliseconds;
-           
+            if (mPlayer.NaturalDuration.HasTimeSpan)
+            {
+                ElapsedTimeLabel.Text = (mPlayer.NaturalDuration.TimeSpan.TotalSeconds
+                    - mPlayer.Position.TotalSeconds).ToString();
+            }
+
+            progressBar1.Value = Math.Min((int)mPlayer.Position.TotalMilliseconds, progressBar1.Maximum);
             //This improves the sync, somehow
             if (progressBar1.Value != 0)
             {
-                progressBar1.Value--;
-                progressBar1.Value++;
+                if(progressBar1.Value-1 >= progressBar1.Minimum) progressBar1.Value--;
+                if(progressBar1.Value+1 <= progressBar1.Maximum) progressBar1.Value++;
             }
         }
 
