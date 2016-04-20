@@ -35,8 +35,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.stepDown = new System.Windows.Forms.RadioButton();
             this.stepUp = new System.Windows.Forms.RadioButton();
+            this.stepDown = new System.Windows.Forms.RadioButton();
+            this.unloadAll = new System.Windows.Forms.Button();
             this.line5 = new RadioCART.Line();
             this.line4 = new RadioCART.Line();
             this.line3 = new RadioCART.Line();
@@ -49,12 +50,23 @@
             // 
             this.groupBox1.Controls.Add(this.stepUp);
             this.groupBox1.Controls.Add(this.stepDown);
-            this.groupBox1.Location = new System.Drawing.Point(517, 23);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(623, 23);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(151, 73);
+            this.groupBox1.Size = new System.Drawing.Size(166, 95);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Step";
+            this.groupBox1.Text = "Counter";
+            // 
+            // stepUp
+            // 
+            this.stepUp.AutoSize = true;
+            this.stepUp.Location = new System.Drawing.Point(7, 45);
+            this.stepUp.Name = "stepUp";
+            this.stepUp.Size = new System.Drawing.Size(135, 24);
+            this.stepUp.TabIndex = 1;
+            this.stepUp.Text = "Time Elapsed";
+            this.stepUp.UseVisualStyleBackColor = true;
             // 
             // stepDown
             // 
@@ -62,21 +74,22 @@
             this.stepDown.Checked = true;
             this.stepDown.Location = new System.Drawing.Point(7, 20);
             this.stepDown.Name = "stepDown";
-            this.stepDown.Size = new System.Drawing.Size(78, 17);
+            this.stepDown.Size = new System.Drawing.Size(155, 24);
             this.stepDown.TabIndex = 0;
             this.stepDown.TabStop = true;
-            this.stepDown.Text = "Step Down";
+            this.stepDown.Text = "Time Remaining";
             this.stepDown.UseVisualStyleBackColor = true;
             // 
-            // stepUp
+            // unloadAll
             // 
-            this.stepUp.AutoSize = true;
-            this.stepUp.Location = new System.Drawing.Point(7, 45);
-            this.stepUp.Name = "stepUp";
-            this.stepUp.Size = new System.Drawing.Size(64, 17);
-            this.stepUp.TabIndex = 1;
-            this.stepUp.Text = "Step Up";
-            this.stepUp.UseVisualStyleBackColor = true;
+            this.unloadAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.unloadAll.Location = new System.Drawing.Point(634, 235);
+            this.unloadAll.Name = "unloadAll";
+            this.unloadAll.Size = new System.Drawing.Size(151, 49);
+            this.unloadAll.TabIndex = 6;
+            this.unloadAll.Text = "Unload All";
+            this.unloadAll.UseVisualStyleBackColor = true;
+            this.unloadAll.Click += new System.EventHandler(this.unloadAll_Click);
             // 
             // line5
             // 
@@ -117,7 +130,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(686, 297);
+            this.ClientSize = new System.Drawing.Size(801, 297);
+            this.Controls.Add(this.unloadAll);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.line5);
             this.Controls.Add(this.line4);
@@ -125,8 +139,11 @@
             this.Controls.Add(this.line2);
             this.Controls.Add(this.line1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "RadioCART 0.0.1";
+            this.ShowIcon = false;
+            this.Text = "RadioCART 1.0";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -138,6 +155,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         public System.Windows.Forms.RadioButton stepUp;
         public System.Windows.Forms.RadioButton stepDown;
+        private System.Windows.Forms.Button unloadAll;
 
 
 

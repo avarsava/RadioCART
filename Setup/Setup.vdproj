@@ -43,6 +43,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -63,7 +79,7 @@
             {
             "Enabled" = "11:TRUE"
             "PromptEnabled" = "11:TRUE"
-            "PrerequisitesLocation" = "2:1"
+            "PrerequisitesLocation" = "2:2"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
                 "Items"
@@ -172,7 +188,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:RadioCART"
         "ProductCode" = "8:{97D0342E-56D8-4924-BE89-DE14175E643B}"
-        "PackageCode" = "8:{0C5A52C6-3F28-494B-9903-088CF7945D0A}"
+        "PackageCode" = "8:{10E32E98-4614-4CC8-9B32-8FB1F91669E1}"
         "UpgradeCode" = "8:{ADE84821-0FE1-4443-88BB-F8FC1ECBE45F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -292,6 +308,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A9B9DED5D13A47F9979466C18277CA31"
+            {
+            "Name" = "8:RadioCART"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_8D0CAFC670F945F7837BB6C3423D9756"
+            "Folder" = "8:_B531A3A87025486EA25142CE563FC1FE"
+            "WorkingFolder" = "8:_3F43433715B74AC698275E7256DA401F"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B3C26D9340754988B0DDFF740E0A5FE2"
             {
             "Name" = "8:RadioCART"

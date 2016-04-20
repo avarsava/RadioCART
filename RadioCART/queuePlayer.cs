@@ -13,9 +13,11 @@ namespace RadioCART
     {
         private MediaPlayer mCurrentSong;
 
+        private Line mCurrentLine;
+
         private bool mPlaying;
 
-        public Queue<String> Songs
+        public Queue<Line> Songs
         {
             get;
             private set;
@@ -25,15 +27,16 @@ namespace RadioCART
         {
             mPlaying = false;
             mCurrentSong = new MediaPlayer();
+            mCurrentLine = new Line();
         }
 
         private void DelegateMethod(Object obj, EventArgs ea)
         {
-            mCurrentSong.MediaEnded += DelegateMethod;
             if (Songs.Count != 0)
             {
-                mCurrentSong.Open(new Uri(Songs.Dequeue()));
-                mCurrentSong.Play();
+                mCurrentLine = Songs.Dequeue();
+                mCurrentLine.Player.MediaEnded += DelegateMethod;
+                mCurrentLine.Player.Play();
             }
 
         }
@@ -43,7 +46,7 @@ namespace RadioCART
             return mPlaying;
         }
 
-        public void StartPlaying(Queue<String> q)
+        public void StartPlaying(Queue<Line> q)
         {
             mPlaying = true;
             Songs = q;
@@ -61,11 +64,12 @@ namespace RadioCART
 
         private void PlayQueue()
         {
-            mCurrentSong.MediaEnded += DelegateMethod;
+            
             if (Songs.Count != 0)
             {
-                mCurrentSong.Open(new Uri(Songs.Dequeue()));
-                mCurrentSong.Play();
+                mCurrentLine = Songs.Dequeue();
+                mCurrentLine.Player.MediaEnded += DelegateMethod;
+                mCurrentLine.Player.Play();
             }
             mPlaying = false;
         }

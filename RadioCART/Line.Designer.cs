@@ -46,18 +46,19 @@
             // fileName
             // 
             this.fileName.AutoSize = true;
+            this.fileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileName.Location = new System.Drawing.Point(152, 17);
             this.fileName.Name = "fileName";
-            this.fileName.Size = new System.Drawing.Size(90, 13);
+            this.fileName.Size = new System.Drawing.Size(0, 24);
             this.fileName.TabIndex = 0;
-            this.fileName.Text = "Please load a file.";
             // 
             // playButton
             // 
+            this.playButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.playButton.ForeColor = System.Drawing.Color.Black;
-            this.playButton.Location = new System.Drawing.Point(311, 7);
+            this.playButton.Location = new System.Drawing.Point(380, 7);
             this.playButton.Name = "playButton";
-            this.playButton.Size = new System.Drawing.Size(50, 40);
+            this.playButton.Size = new System.Drawing.Size(70, 40);
             this.playButton.TabIndex = 1;
             this.playButton.Text = "PLAY";
             this.playButton.UseVisualStyleBackColor = true;
@@ -65,9 +66,10 @@
             // 
             // stopButton
             // 
-            this.stopButton.Location = new System.Drawing.Point(367, 7);
+            this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stopButton.Location = new System.Drawing.Point(456, 7);
             this.stopButton.Name = "stopButton";
-            this.stopButton.Size = new System.Drawing.Size(50, 40);
+            this.stopButton.Size = new System.Drawing.Size(66, 40);
             this.stopButton.TabIndex = 2;
             this.stopButton.Text = "STOP";
             this.stopButton.UseVisualStyleBackColor = true;
@@ -75,7 +77,8 @@
             // 
             // ejectButton
             // 
-            this.ejectButton.Location = new System.Drawing.Point(423, 7);
+            this.ejectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ejectButton.Location = new System.Drawing.Point(528, 7);
             this.ejectButton.Name = "ejectButton";
             this.ejectButton.Size = new System.Drawing.Size(60, 25);
             this.ejectButton.TabIndex = 3;
@@ -90,7 +93,7 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(423, 32);
+            this.clearButton.Location = new System.Drawing.Point(528, 32);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(60, 15);
             this.clearButton.TabIndex = 4;
@@ -100,9 +103,10 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(271, 16);
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(333, 16);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(34, 17);
+            this.checkBox1.Size = new System.Drawing.Size(41, 24);
             this.checkBox1.TabIndex = 5;
             this.checkBox1.Text = "Q";
             this.checkBox1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -168,7 +172,7 @@
             this.Controls.Add(this.playButton);
             this.Controls.Add(this.fileName);
             this.Name = "Line";
-            this.Size = new System.Drawing.Size(500, 50);
+            this.Size = new System.Drawing.Size(601, 50);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);

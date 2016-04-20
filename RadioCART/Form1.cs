@@ -32,9 +32,9 @@ namespace RadioCART
             }
         }
 
-        private string[] mQueue;
+        private Line[] mQueue;
 
-        public string[] Queue
+        public Line[] Queue
         {
             get
             {
@@ -53,15 +53,15 @@ namespace RadioCART
         {
             InitializeComponent();
             mPlaylist = new List<String>();
-            mQueue = new string[5]; //strings are nullable btw 
+            mQueue = new Line[5]; //strings are nullable btw 
             player = new MediaPlayer();
             addControls();
             QueuePlayer = new QueuePlayer();
         }
 
-        public Queue<String> ReorderQueue(int start)
+        public Queue<Line> ReorderQueue(int start)
         {
-            Queue<String> ret = new Queue<String>();
+            Queue<Line> ret = new Queue<Line>();
             int i = start;
 
             while (true)
@@ -87,11 +87,11 @@ namespace RadioCART
 
         private void addControls()
         {
-            line1.SetUpLine(this, 1);
-            line2.SetUpLine(this, 2);
-            line3.SetUpLine(this, 3);
-            line4.SetUpLine(this, 4);
-            line5.SetUpLine(this, 5);
+            line1.SetUpLine(this, 0);
+            line2.SetUpLine(this, 1);
+            line3.SetUpLine(this, 2);
+            line4.SetUpLine(this, 3);
+            line5.SetUpLine(this, 4);
         }
 
         private void line1_Load(object sender, EventArgs e)
@@ -117,6 +117,15 @@ namespace RadioCART
         private void line5_Load(object sender, EventArgs e)
         {
             line5.SetEjectLabel(5);
+        }
+
+        private void unloadAll_Click(object sender, EventArgs e)
+        {
+            line1.ClearLine();
+            line2.ClearLine();
+            line3.ClearLine();
+            line4.ClearLine();
+            line5.ClearLine();
         }
     }
 }

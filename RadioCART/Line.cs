@@ -46,6 +46,7 @@ namespace RadioCART
             InitializeComponent();
             mPlayer = new MediaPlayer();
             mPlayer.MediaOpened += songLoaded;
+            mPlayer.MediaEnded += stopButton_Click;
             mDt = new DispatcherTimer();
             mDt.Interval = TimeSpan.FromMilliseconds(10);
             mDt.Tick += mDt_Tick;
@@ -66,6 +67,10 @@ namespace RadioCART
                 {
                     ElapsedTimeLabel.Text = Math.Round(mPlayer.Position.TotalSeconds, 1).ToString();
                 }
+            }
+            else
+            {
+                ElapsedTimeLabel.Text = null;
             }
 
             progressBar1.Value = Math.Min((int)mPlayer.Position.TotalMilliseconds, progressBar1.Maximum);
@@ -131,7 +136,7 @@ namespace RadioCART
             {
                 time = mPlayer.NaturalDuration.TimeSpan.TotalSeconds;
             }
-            TotalTimeLabel.Text = Math.Round(time, 3).ToString();
+            TotalTimeLabel.Text = Math.Round(time, 1).ToString();
             playable = true;
 
             progressBar1.Minimum = 0;
@@ -171,6 +176,10 @@ namespace RadioCART
             ejectButton.Text = n.ToString();
         }
 
+        public void ClearLine(){
+            clearButton_Click(new object(), new EventArgs());
+        }
+
         private void clearButton_Click(object sender, EventArgs e)
         {
             if (theForm.Playlist.IndexOf(mSong) >= 0)
@@ -178,9 +187,14 @@ namespace RadioCART
                 theForm.Playlist.RemoveAt(theForm.Playlist.IndexOf(mSong));
             }
             
-            fileName.Text = "Please load a file.";
+            fileName.Text = null;
+
             TotalTimeLabel.Text = null;
-            ElapsedTimeLabel.Text = null;
+            mPlayer.Close(); //This will clear the ElapsedTimeLabel
+
+            checkBox1.Checked = false;
+            theForm.Queue[id] = null;
+            progressBar1.Value = 0;
             playable = false;
         }
 
@@ -188,7 +202,7 @@ namespace RadioCART
         {
             if (checkBox1.CheckState == CheckState.Checked)
             {
-                theForm.Queue[id] = mSong;
+                theForm.Queue[id] = this;
             }
             else if (checkBox1.CheckState == CheckState.Unchecked)
             {
